@@ -1,8 +1,15 @@
 namespace cc150Sharp{
     public class IsUnique1_1{
-        //determine if string has all unique characters..
-        //brute force way... for each char, check if the same char exists in the rest of string
+        //Problem Description: determine if string has all unique characters..
+        //1.Listen, understand the problem
+        //2.Example, normal small case, special case(empty string/special chars?), big enough case,
+        //3.Brute force way(naive way)...for each char, check if the same char exists in the rest of string,check the time complexity, don't code yet since it is not final version.
+        //BUD optimization: a. look for unused info.
+        				//	b. Use a fresh example.
+        				//. c. Solve it "incorretly"
         public bool isUnique(string s){
+        
+        if (s.Length==0)return true;
         
         for (int i=0;i<s.Length;i++)
         {//O(n) 
@@ -22,7 +29,10 @@ namespace cc150Sharp{
     	[Fact]
     	public void testIsUnique{
     		string s="aertuhghza";
-    		Assert.Equals(false,s);
+    		Assert.Equals(false,isUnique(s));
+    		string s1="";
+    		Assert.Equals(true,isUnique(s1));
+    		Assert.Equals(false,isUnique(" "));
     	}
     }
 }
