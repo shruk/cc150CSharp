@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Xunit;
+
 namespace cc150Sharp{
     public class IsUnique1_1{
         //Problem Description: determine if string has all unique characters..
@@ -54,13 +57,18 @@ namespace cc150Sharp{
     
     
     public class TestIsUnique{
+		private IsUnique1_1 _class;
+		public TestIsUnique(){
+			_class=new IsUnique1_1();
+		}
+
     	[Fact]
-    	public void testIsUnique{
+    	public void testIsUnique(){
     		string s="aertuhghza";
-    		Assert.Equals(false,isUnique(s));
+    		Assert.Equal(false,_class.isUnique(s));
     		string s1="";
-    		Assert.Equals(true,isUnique(s1));
-    		Assert.Equals(false,isUnique(" "));
+    		Assert.Equal(true,_class.isUnique(s1));
+    		Assert.Equal(false,_class.isUnique("  "));
     	}
     }
 }

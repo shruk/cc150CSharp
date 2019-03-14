@@ -1,6 +1,3 @@
-C:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
-C:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
-C:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
 C:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\cc150CSharp.deps.json
 C:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\cc150CSharp.runtimeconfig.json
 C:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\cc150CSharp.runtimeconfig.dev.json
@@ -12,3 +9,6 @@ C:\Users\yeyon\source\vscode\cc150CSharp\obj\Debug\netcoreapp2.1\cc150CSharp.Ass
 C:\Users\yeyon\source\vscode\cc150CSharp\obj\Debug\netcoreapp2.1\cc150CSharp.AssemblyInfo.cs
 C:\Users\yeyon\source\vscode\cc150CSharp\obj\Debug\netcoreapp2.1\cc150CSharp.dll
 C:\Users\yeyon\source\vscode\cc150CSharp\obj\Debug\netcoreapp2.1\cc150CSharp.pdb
+c:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+c:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+c:\Users\yeyon\source\vscode\cc150CSharp\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll

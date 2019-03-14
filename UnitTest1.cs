@@ -1,9 +1,9 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace cc150CSharp
 {
-    [TestClass]
+    
     public class InsertionSort
     {
         public static void NormalInsertionSort(int [] arr)
@@ -26,7 +26,7 @@ namespace cc150CSharp
         }
 
 
-        [TestMethod]
+        [Fact]
         public void TestMethod1()
         {
                 int [] arr=new int[7] {7,1,2,3,4,5,6};
