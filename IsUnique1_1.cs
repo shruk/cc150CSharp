@@ -23,20 +23,32 @@ namespace cc150Sharp{
         		//d:Small test cases.
         		//e:Special cases. Test against null or single element values, extreme cases, etc.
         		//f:When finding bugs, analyze the bug and make correction in the best place.
-        public bool isUnique(string s){
+        public bool isUnique_bf(string s){
         
-        if (s.Length==0)return true;
+        	if (s.Length==0)return true;
         
-        for (int i=0;i<s.Length;i++)
-        {//O(n) 
-        	for (int j=i+1;j<s.Length;j++)
-        	{//iteration goes :(n-1)+(n-2)+...+2+1=n(n+1)/2 -n
-        		if (s[i]==s[j]){return false;}
-        	}
-        }
+	        for (int i=0;i<s.Length;i++)
+	        {//O(n) 
+	        	for (int j=i+1;j<s.Length;j++)
+	        	{//iteration goes :(n-1)+(n-2)+...+2+1=n(n+1)/2 -n
+	        		if (s[i]==s[j]){return false;}
+	        	}
+	        }
         //based on iternation total above
         //total O(n)=O(n^2)
-        return false;
+        	return false;
+        }
+        
+        public bool isUnique(string s){
+        	if (s.Length==0)return true;
+        	HashSet<char> hs=new HashSet<char>();
+        	foreach (char c in s)
+        	{//O(n) as it loops through n elements
+        		if (hs.Add(c)==false)return false;
+        	}
+        	//time complexity is O(n)
+        	//space complexity is O(n)
+        	return true;
         }
     }
     
