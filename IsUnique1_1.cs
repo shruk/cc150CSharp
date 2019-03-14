@@ -15,7 +15,7 @@ namespace cc150Sharp{
         				//	  f: Use hash table
         				//	  g: Think about the best conceivable runtime
         //5.Walk Through the optimal solution found, not code yet...solidify my understanding of algorithm. Write code slowly and get a feel for the structure of the code. Know what the variables are and when they change.
-        //6.Implement. Write beautiful code. a: Modularized code. write functions pretending the function 										is there, fill in details later if need to.
+        //6.Implement. Write beautiful code. a: Modularized code. write functions pretending the function is there, fill in details later if need to.
         								//   b: Error checks.
         								//.  c: Use classes/structs if necessary (e.g. returning object)
         								//.  d: Good varaible name. it is OK to use abbreviation.

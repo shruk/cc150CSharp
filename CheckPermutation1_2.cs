@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Xunit;
+
 namespace cc150Sharp{
 	public class CheckPermutation1_2{
 		//problem:Given two strings, write a method to decide if one is a permutation of the other.
@@ -11,9 +14,9 @@ namespace cc150Sharp{
 		//7.Test
 		public bool IsPermutation(string a,string b)
 		{
-			if (a == null)||b(==null) return false;
+			if ((a == null)||(b==null)) return false;
 			if (a.Length!=b.Length)return false;
-			Dictionary<string,int> dictA=new Dictionary<string,int>();
+			Dictionary<char,int> dictA=new Dictionary<char,int>();
 			int outCount;
 			for(int i=0;i<a.Length;i++){//O(a) operations
 				if (dictA.TryGetValue(a[i],out outCount))
@@ -39,17 +42,23 @@ namespace cc150Sharp{
 	}
 	
 	public class TestCheckPermutation{
-		private CheckPermutation _class;
+		private CheckPermutation1_2 _class;
 		public TestCheckPermutation(){
-		_class=new CheckPermutation();
+		_class=new CheckPermutation1_2();
 		}
 		[Fact]
 		public void testCheckPermutation(){
 			string a="";
 			string b="";
+			Assert.Equal(true,_class.IsPermutation(a,b));
+			a=null;
+			b=null;
 			Assert.Equal(false,_class.IsPermutation(a,b));
 			a="aab";
 			b="baa";
+			Assert.Equal(true,_class.IsPermutation(a,b));
+			a="aabceer";
+			b="baaerec";
 			Assert.Equal(true,_class.IsPermutation(a,b));
 		
 		}
