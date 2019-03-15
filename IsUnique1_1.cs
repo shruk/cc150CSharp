@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace cc150Sharp{
+namespace cc150CSharp{
     public class IsUnique1_1{
         //Problem Description: determine if string has all unique characters..
         //1.Listen, understand the problem

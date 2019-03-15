@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace cc150Sharp{
+namespace cc150CSharp{
 	public class CheckPermutation1_2{
 		//problem:Given two strings, write a method to decide if one is a permutation of the other.
 		//1.Listen: assume the string is not null,

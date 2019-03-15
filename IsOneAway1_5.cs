@@ -1,5 +1,9 @@
+namespace cc150CSharp{
+    public class IsOneAway{
+//0.Problem:three types of edits, replace,insert,remove, given 2 strings,check if they are one edit away.
 //1.Listen, understand the problem
 //2.Example, normal small case, special case(empty string/special chars?), big enough case,
+    //"abcd" vs "aecd" is true "abcd" vs "cdab" is false
 //3.Brute force way(naive way)...for each char, check if the same char exists in the rest of string,check the time complexity, don't code yet since it is not final version.
 //4.BUD optimization. 
 //	  a: look for unused info.
@@ -23,4 +27,5 @@
 //	d:Small test cases.
 //	e:Special cases. Test against null or single element values, extreme cases, etc.
 //	f:When finding bugs, analyze the bug and make correction in the best place.
-       
+    }
+}
