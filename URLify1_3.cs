@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Xunit;
 
 namespace cc150CSharp{
-	public class URLify1_3{
+	public class URLify{
 //Problem: Write a method to replace all spaces in a string with '%20', and string and "true" length of string is given, return the new string, need to use array of char so operation is in place.
 //1.Listen: The char array has enough spaces so no need to resize. True length is length of substring that need to be processed start from index 0.
 //2.Example: input "Mr John Smith    ", 13
@@ -46,5 +47,27 @@ namespace cc150CSharp{
 			}
 			return a;
 		}
+	}
+
+	public class TestURLify{
+		private URLify _o;
+		public TestURLify(){
+			_o=new URLify();
+		}
+
+		[Fact]
+		public void testURLify()
+		{
+			char [] a=new char[2]{'a','b'};
+			Assert.Equal(a,_o.URLify_bf(a,2));
+			char [] b=new char[5];
+			b[0]=' ';
+			b[1]='a';
+			b[2]='b';
+			Assert.Equal('%',_o.URLify_bf(b,3)[0]);
+
+
+		}
+
 	}
 }
