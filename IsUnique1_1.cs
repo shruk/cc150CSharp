@@ -37,7 +37,7 @@ namespace cc150CSharp{
 	        		if (s[i]==s[j]){return false;}
 	        	}
 	        }
-        //based on iternation total above
+        //based on iternation total above..
         //total O(n)=O(n^2)
         	return false;
         }

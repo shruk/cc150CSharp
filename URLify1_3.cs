@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace cc150CSharp{
 	public class URLify1_3{
 	//Problem: Write a method to replace all spaces in a string with '%20', and string and "true" length of string is given, return the new string, need to use array of char so operation is in place.
@@ -38,7 +40,7 @@ namespace cc150CSharp{
 		    //loop	through O(n)
 			for (int i=0;i<index;i++)
 			{
-				a[i]=dict[i];
+				//a[i]=dict[i];
 			}
 			return a;
 		}

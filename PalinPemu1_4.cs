@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using Xunit;
+
 namespace cc150CSharp{
-    public class PalinPemu1_4{
+    public class PalinPemu{
  //0 problem: Given a string, check if it is a permutation of a palindrome
  //1.Listen, understand the problem, looks like space in between is ignored
  //2.Example, normal small case, special case(empty string/special chars?), big enough case,
@@ -36,7 +39,7 @@ namespace cc150CSharp{
 			foreach( char c in a)
 			{//O(n)
 				if (c!=' '){
-					if (dict.TryGetItem(c)){
+					if (dict.TryGetValue(c,out int value)){
 						dict[c]+=1;
 					}else{
 						dict.Add(c,1);
@@ -45,24 +48,24 @@ namespace cc150CSharp{
 			}
 			int oddCount=0;
 			//odd can only be 0 or 1
-			foreach (key k in dict.Keys)
+			foreach (char k in dict.Keys)
 			{//O(n)
 				if (dict[k]%2!=0)oddCount++;
 			}
 			if (oddCount>1)return false;
 			return true;
-		return false;
 		}
     }
     
     public class TestPalinPemu{
-     private PalinPemu1_4 _this;
+     private PalinPemu _this;
      public TestPalinPemu(){
      	_this=new PalinPemu();
      	}
+
      [Fact]
-     pubilc void testPalinPemu(){
-     	string a=""
+     public void testPalinPemu(){
+     	string a="";
      	Assert.Equal(true,_this.IsPalinPemu(a));
      }	
     }

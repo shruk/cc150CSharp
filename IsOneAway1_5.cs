@@ -1,5 +1,7 @@
+using System;
+
 namespace cc150CSharp{
-    public class IsOneAway{
+    public class OneAway{
 //0.Problem:three types of edits, replace,insert,remove, given 2 strings,check if they are one edit away.
 //1.Listen, understand the problem
 //2.Example, normal small case, special case(empty string/special chars?), big enough case,
@@ -30,7 +32,7 @@ namespace cc150CSharp{
 //	f:When finding bugs, analyze the bug and make correction in the best place.
 	  public bool IsOneAway(string a,string b){
 	    //pre-compute:
-	    int ldiff=Math.abs(a.Length-b.Length)
+	    int ldiff=Math.Abs(a.Length-b.Length);
 	    if (ldiff>1) return false;
 	    int len=a.Length<b.Length?a.Length:b.Length;
 	    int diff=0;
@@ -42,7 +44,7 @@ namespace cc150CSharp{
 		    		if (diff>1)return false;
 		    	}
 	    	}
-	    if (ldiff==1){diff++}	
+	    if (ldiff==1){diff++;}	
 	    return diff<=1;	
 	  }
   
