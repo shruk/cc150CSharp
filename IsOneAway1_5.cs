@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace cc150CSharp{
     public class OneAway{
@@ -34,19 +36,58 @@ namespace cc150CSharp{
 	    //pre-compute:
 	    int ldiff=Math.Abs(a.Length-b.Length);
 	    if (ldiff>1) return false;
-	    int len=a.Length<b.Length?a.Length:b.Length;
-	    int diff=0;
-	    for(int i=0;i<len;i++)
-	    	{
-		    	if (a[i]!=b[i])
-		    	{
-		    		diff++;
-		    		if (diff>1)return false;
-		    	}
-	    	}
-	    if (ldiff==1){diff++;}	
+		int diff=0;
+		//check if a has one more char than b
+		if (a.Length>b.Length)
+		{
+			for(int i=0,j=0;i<a.Length;)
+			{	//check if a has one more char 
+				if(a[i]!=b[j]){
+					//found the char,move i forward
+					i++;diff++;
+					if (diff>1)return false;
+				}else{j++;i++;}
+			}
+		}else if(a.Length<b.Length){
+			//check if b has one more char
+			for(int i=0,j=0;i<b.Length;)
+			{
+				if(b[i]!=a[j]){
+					//found the char,move i forward
+					i++;diff++;
+					if (diff>1)return false;
+				}else{j++;i++;}
+			}
+		}else {
+			//check if char gets replaced by 1
+			for(int i=0,j=0;i<b.Length;)
+			{
+				if(b[i]!=a[j]){
+					//found the char,move i forward
+					i++;j++;diff++;
+					if (diff>1)return false;
+				}else{j++;i++;}
+			}
+		}
 	    return diff<=1;	
 	  }
   
     }
+
+	public class TestIsOneAway{
+		private OneAway _o;
+		public TestIsOneAway(){
+			_o=new OneAway();
+		}
+		[Fact]
+		public void testIsOneAway(){
+			string a="pale";
+			string b="ple";
+			Assert.Equal(true,_o.IsOneAway(a,b));
+			string b1="bake";
+			Assert.Equal(false,_o.IsOneAway(a,b1));
+		}
+
+
+	}
 }
