@@ -62,10 +62,10 @@ namespace cc150CSharp
 
     public class TestIsUnique
     {
-        private IsUnique _class;
+        private IsUnique11 _class;
         public TestIsUnique()
         {
-            _class = new IsUnique();
+            _class = new IsUnique11();
         }
 
         [Fact]
