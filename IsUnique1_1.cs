@@ -34,15 +34,15 @@ namespace cc150CSharp
             if (s.Length == 0) return true;
 
             for (int i = 0; i < s.Length; i++)
-            {//O(n) 
+            {// O(n) 
                 for (int j = i + 1; j < s.Length; j++)
-                {//iteration goes :(n-1)+(n-2)+...+2+1=n(n+1)/2 -n
+                {// Iteration goes :(n-1)+(n-2)+...+2+1=n(n+1)/2 -n
                     if (s[i] == s[j]) { return false; }
                 }
             }
-            //based on iternation total above..
-            //total O(n)=O(n^2)
-            return false;
+            // Based on iternation total above..
+            // total O(n)=O(n^2).
+            return true;
         }
 
         public bool IsUnique(string s)
@@ -50,13 +50,32 @@ namespace cc150CSharp
             if (s.Length == 0) return true;
             HashSet<char> hs = new HashSet<char>();
             foreach (char c in s)
-            {//O(n) as it loops through n elements
+            {// O(n) as it loops through n elements.
                 if (hs.Add(c) == false) return false;
             }
-            //time complexity is O(n)
-            //space complexity is O(n)
+            // Time complexity is O(n).
+            // Space complexity is O(n).
             return true;
         }
+
+		// How about use List? If to use List, time complexity is still be O(n^2) as for each newly added item, would need to compare the ones in List.
+		public bool IsUniqueByList(string s)
+        {
+            if (s.Length == 0) return true;
+			var li=new List<char>();
+			foreach (char c in s)
+			{
+				foreach (char c1 in li)
+				{// O(n^2) time compexlity
+					if (c1==c)return false;
+				}
+			}
+			return true;
+
+        }
+
+		// Try to solve it with O(NlogN)?
+		//maybe recursion?
     }
 
 
