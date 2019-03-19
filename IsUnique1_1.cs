@@ -3,7 +3,7 @@ using Xunit;
 
 namespace cc150CSharp
 {
-    public class IsUnique1_1
+    public class IsUnique
     {
         //Problem Description: determine if string has all unique characters..
         //1.Listen, understand the problem
@@ -28,7 +28,7 @@ namespace cc150CSharp
         //d:Small test cases.
         //e:Special cases. Test against null or single element values, extreme cases, etc.
         //f:When finding bugs, analyze the bug and make correction in the best place.
-        public bool isUnique_bf(string s)
+        public bool IsUniqueBf(string s)
         {
 
             if (s.Length == 0) return true;
@@ -45,7 +45,7 @@ namespace cc150CSharp
             return false;
         }
 
-        public bool isUnique(string s)
+        public bool IsUnique(string s)
         {
             if (s.Length == 0) return true;
             HashSet<char> hs = new HashSet<char>();
@@ -62,20 +62,20 @@ namespace cc150CSharp
 
     public class TestIsUnique
     {
-        private IsUnique1_1 _class;
+        private IsUnique _class;
         public TestIsUnique()
         {
-            _class = new IsUnique1_1();
+            _class = new IsUnique();
         }
 
         [Fact]
-        public void testIsUnique()
+        public void Test()
         {
             string s = "aertuhghza";
-            Assert.False(_class.isUnique(s));
+            Assert.False(_class.IsUnique(s));
             string s1 = "";
-            Assert.True(_class.isUnique(s1));
-            Assert.False(_class.isUnique("  "));
+            Assert.True(_class.IsUnique(s1));
+            Assert.False(_class.IsUnique("  "));
         }
     }
 }
