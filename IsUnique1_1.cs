@@ -65,10 +65,10 @@ namespace cc150CSharp{
     	[Fact]
     	public void testIsUnique(){
     		string s="aertuhghza";
-    		Assert.Equal(false,_class.isUnique(s));
+    		Assert.False(_class.isUnique(s));
     		string s1="";
-    		Assert.Equal(true,_class.isUnique(s1));
-    		Assert.Equal(false,_class.isUnique("  "));
+    		Assert.True(_class.isUnique(s1));
+    		Assert.False(_class.isUnique("  "));
     	}
     }
 }
