@@ -1,5 +1,10 @@
-namespace cc150CSharp{
-    public class RemoveDup{
+using System;
+using Xunit;
+
+namespace cc150CSharp
+{
+    public class DupUnsortedList
+    {
 //problem:remove duplicate from unsorted list
 //1.Listen, understand the problem, try not use buffer.
 //2.Example, normal small case, special case(empty string/special chars?), big enough case,
@@ -33,25 +38,57 @@ namespace cc150CSharp{
 //	d:Small test cases.
 //	e:Special cases. Test against null or single element values, extreme cases, etc.
 //	f:When finding bugs, analyze the bug and make correction in the best place.
-    public class Node<T>{
-        public T data;
-        public Node<T> next;
-    }
-    public void RemoveDuplicate<T>(Node<T> head){
-            Node<T> slow=head;
-            Node<T> fast=head.next;
-            while(slow.next!=null)
+        public class Node<T> where T:IComparable
+        {
+            public T data;
+            public Node<T> next;
+            public Node():this(default(T))
+            {}
+            public Node(T dt)
             {
-                //fast will go through the node for this slow
+                data=dt;
+            }
+        }
+        public void RemoveDuplicate<T>(Node<T> head)where T:IComparable
+        {
+            Node<T> slow=head;
+            Node<T> fast=head;
+            while(slow.next!=null)
+            {// Fast will go through the node for this slow runner.
                 while (fast.next!=null)
-                {
-                    if (slow==fast){//found
+                {// O(n^2) complexity, need to seek for improvement.
+                    if (slow.data.CompareTo(fast.next.data)==0)
+                    {// Found node.
+                        fast.next=fast.next.next;
                     }
-                    fast=fast.next;
+                    fast=fast.next!=null?fast.next:fast;
                 }
 
                 slow=slow.next;
+                fast=slow;
             }
+
+        }
     }
+
+    public class Test{
+        private DupUnsortedList _o;
+        public Test(){
+            _o=new DupUnsortedList();
+        }
+        [Fact]
+        public void TestRemoveDup()
+        {
+            DupUnsortedList.Node<char> n1=new DupUnsortedList.Node<char>('c');
+            var n2=new DupUnsortedList.Node<char>('a');
+            var n3=new DupUnsortedList.Node<char>('b');
+            var n4=new DupUnsortedList.Node<char>('c');
+            var n5=new DupUnsortedList.Node<char>('a');
+            n1.next=n2;
+            n2.next=n3;
+            n3.next=n4;
+            n4.next=n5;
+            _o.RemoveDuplicate(n1);
+        }
     }
 }
