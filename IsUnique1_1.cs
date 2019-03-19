@@ -3,7 +3,7 @@ using Xunit;
 
 namespace cc150CSharp
 {
-    public class IsUnique
+    public class IsUnique11
     {
         //Problem Description: determine if string has all unique characters..
         //1.Listen, understand the problem
