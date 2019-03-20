@@ -46,14 +46,14 @@ namespace cc150CSharp
     {
         // Find the length of singly linked list
         // if len=5, k=3, then we need to find the indx 1 element i.e. (len-k-1)th(idx) element
-        int Len=0;// Total Count of Elements
+        int Len=1;// Total Count of Elements
         Node<T> runner=head;
         while(runner.next!=null)
         { // O(n)
             runner=runner.next;
             Len++;
         }
-        int idx=Len-(Len%k);
+        int idx=Len-(k%Len)-1;
         Len=0;
         while(head.next!=null)
         { // O(n)
@@ -83,7 +83,7 @@ namespace cc150CSharp
             n1.next=n2;
             n2.next=n3;
             n3.next=n4;
-            Assert.Equal(n3.data,_o.FindKth(n1,1));
+            Assert.Equal(n2.data,_o.FindKth(n1,2));
             Assert.Equal(n3.data,_o.FindKth(n1,5));
         }
     }
