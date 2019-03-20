@@ -73,9 +73,20 @@ namespace cc150CSharp
 			return true;
 
         }
-
-		// Try to solve it with O(NlogN)?
-		//maybe recursion?
+        // Try to solve it with O(NlogN)?
+		// Maybe recursion? 
+        public bool IsUniqueTry(string s)
+        {// Divide and Conquer, Sort array first, then check each.
+            // MergeSort(s);// O(nlogn) time complexity.
+            for (int i=0;i<s.Length-1;i++)
+            {
+                if(s[i]==s[i+1])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 
