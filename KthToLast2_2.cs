@@ -44,9 +44,9 @@ namespace cc150CSharp
         }
     public T FindKth<T>(Node<T> head,int k) where T:IComparable
     {
-        // Find the length of singly linked list
-        // if len=5, k=3, then we need to find the indx 1 element i.e. (len-k-1)th(idx) element
-        int Len=1;// Total Count of Elements
+        // Find the length of singly linked list.
+        // If len=5, k=3, then we need to find the indx 1 element i.e. (len-k-1)th(idx) element.
+        int Len=1;// Total Count of Elements.
         Node<T> runner=head;
         while(runner.next!=null)
         { // O(n)
