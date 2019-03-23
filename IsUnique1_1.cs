@@ -28,6 +28,9 @@ namespace cc150CSharp
         //d:Small test cases.
         //e:Special cases. Test against null or single element values, extreme cases, etc.
         //f:When finding bugs, analyze the bug and make correction in the best place.
+        
+        // Time: O(n^2)
+        // Space: O(1)
         public bool IsUniqueBf(string s)
         {
 
@@ -45,6 +48,8 @@ namespace cc150CSharp
             return true;
         }
 
+        // Time: O(n)
+        // Space: O(n)
         public bool IsUnique(string s)
         {
             if (s.Length == 0) return true;
@@ -74,8 +79,9 @@ namespace cc150CSharp
 
         }
         // Try to solve it with O(NlogN)?
-		// Maybe recursion? 
-        public bool IsUniqueTry(string s)
+		// Time: O(nlogn)
+        // Space: merge sort space requirement
+        public bool IsUniqueBySort(string s)
         {// Divide and Conquer, Sort array first, then check each.
             // MergeSort(s);// O(nlogn) time complexity.
             for (int i=0;i<s.Length-1;i++)
@@ -86,6 +92,26 @@ namespace cc150CSharp
                 }
             }
             return false;
+        }
+
+        // Time: O(n)
+        // Space: O(128)
+        public bool IsUniqueASCII(string s)
+        {// Assume char set is ASCII set for 128 elements
+            bool [] checker=new bool[128]();
+            for(int i=0;i<=s.Length;i++)
+            {// O(n) time complexity
+                int val=(int)s[i];
+                if (checker[val])
+                {
+                    return false;
+                }
+                else 
+                {
+                    checker[val]=true;
+                }
+            }
+            return true;
         }
     }
 
