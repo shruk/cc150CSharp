@@ -1,3 +1,5 @@
+using System;
+
 namespace cc150CSharp
 {
 // Problem:given access to middle node that is not the first nor last node in a singly linked list,
@@ -29,19 +31,16 @@ namespace cc150CSharp
 //	d:Small test cases.
 //	e:Special cases. Test against null or single element values, extreme cases, etc.
 //	f:When finding bugs, analyze the bug and make correction in the best place.
-    public class Node<T>where T:IComparable{
-        T data;
-        Node<T> next;
-    }
-    public class MiddleNode
+
+    public class MiddleNode<T>where T:IComparable
     {
         public void DeleteMiddleNode(Node<T> middle){}
     }
     public class TestMiddleNode{
-        private MiddleNode _o;
+        private MiddleNode<int> _o;
         public TestMiddleNode()
         {
-            _o=new MiddleNode();
+            _o=new MiddleNode<int>();
         }
         public void testMiddleNodeWorks()
         {}

@@ -1,3 +1,6 @@
+using System;
+using Xunit;
+
 namespace cc150CSharp
 {
 // Problem:given a linked list and a value x, sort the list so that all items less than x is on the left side
@@ -31,14 +34,8 @@ namespace cc150CSharp
 //	d:Small test cases.
 //	e:Special cases. Test against null or single element values, extreme cases, etc.
 //	f:When finding bugs, analyze the bug and make correction in the best place.
-    public class Node<T>where T:IComparable{
-        public T data;
-        public Node<T> next;
-        public Node(T value){
-            data=value;
-        }
-    }
-    public class Partition
+
+    public class Partition<T>where T: IComparable
     {
         public Node<T> PartitionLinkedList(Node<T> head, T x)
         {// Recreate another 2 list and keep original link intact. 
@@ -69,10 +66,10 @@ namespace cc150CSharp
     }
     public class TestPartition
     {
-        private MiddleNode _o;
+        private Partition<int> _o;
         public TestPartition()
         {
-            _o=new Partition();
+            _o=new Partition<int>();
         }
         [Fact]
         public void testPartitionWorks()

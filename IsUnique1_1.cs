@@ -98,7 +98,7 @@ namespace cc150CSharp
         // Space: O(128)
         public bool IsUniqueASCII(string s)
         {// Assume char set is ASCII set for 128 elements
-            bool [] checker=new bool[128]();
+            bool [] checker=new bool[128];
             for(int i=0;i<=s.Length;i++)
             {// O(n) time complexity
                 int val=(int)s[i];
