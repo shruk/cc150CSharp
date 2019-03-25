@@ -169,6 +169,23 @@ namespace cc150CSharp
             }
             return true;
         }
+
+        // assume only letters of a-z due to nature of ACSII
+        // Time complexity: T(n)
+        public bool IsUniqueBit(string s)
+        {//
+            int checker=0;
+            for (int i=0;i<s.Length;i++)
+            {
+                int val=s[i]-'a';
+                if((checker & (1<<val))>0) // Left shift bit and perform Bitwise AND 
+                {
+                    return false;
+                }
+                checker |=(1<<val); //Bitwise OR will assign 1 to checker where there is a letter.
+            }
+            return true;
+        }
     }
 
 
@@ -198,6 +215,7 @@ namespace cc150CSharp
             Assert.False(_class.IsUnique("  "));
             Assert.False(_class.IsUniqueTry("  "));
             Assert.False(_class.IsUniqueTry("abcdefghijkk"));
+            Assert.False(_class.IsUniqueBit("abcdefghijkk"));
             Assert.True(_class.IsUniqueTry("abcdefghijk"));
             Assert.False(_class.IsUniqueTry("abicdhijk"));
         }
@@ -210,6 +228,12 @@ namespace cc150CSharp
         public void methodBf()
         {
             bool b=_class.IsUniqueBf("bcdefghijklmnopqrstuvwxyz1234567890-=][';/.,ZXCVBNMKLJHGFDSQWERTYUIOPaa");
+        }
+
+        public void methodBit()
+        {
+            bool b=_class.IsUniqueBit("bcdefghijklmnopqrstuvwxyz1234567890-=][';/.,ZXCVBNMKLJHGFDSQWERTYUIOPaa");
+           
         }
 
         [Fact]
@@ -231,8 +255,16 @@ namespace cc150CSharp
             _st=new SpeedTester(method);
             _st.RunTest();
             _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
+        }
 
-
+        
+        [Fact]
+        public void TestPerfBit()
+        { // Bit method should be very fast due to bit operation
+            MethodHandler method=new MethodHandler(methodBit);
+            _st=new SpeedTester(method);
+            _st.RunTest();
+            _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
         }
     }
 }
