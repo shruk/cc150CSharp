@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace cc150CSharp
 {
@@ -117,12 +118,15 @@ namespace cc150CSharp
 
 
     public class TestIsUnique
+
     {
+        private readonly ITestOutputHelper _output;
         private UniqueString _class;
         private SpeedTester _st;
-        public TestIsUnique()
+        public TestIsUnique(ITestOutputHelper output)
         {
             _class = new UniqueString();
+            _output=output;
         }
 
         
@@ -132,19 +136,21 @@ namespace cc150CSharp
         {
             string s = "aertuhghza";
             Assert.False(_class.IsUnique(s));
+            Assert.False(_class.IsUniqueBf(s));
             string s1 = "";
             Assert.True(_class.IsUnique(s1));
+            Assert.True(_class.IsUniqueBf(s1));
             Assert.False(_class.IsUnique("  "));
         }
 
         public void methodASCII()
         {
-            bool b=_class.IsUniqueASCII("aertuhghza");
+            bool b=_class.IsUniqueASCII("bcdefghijklmnopqrstuvwxyz1234567890-=][';/.,ZXCVBNMKLJHGFDSQWERTYUIOPaa");
         }
 
         public void methodBf()
         {
-            bool b=_class.IsUniqueBf("aertuhghza");
+            bool b=_class.IsUniqueBf("bcdefghijklmnopqrstuvwxyz1234567890-=][';/.,ZXCVBNMKLJHGFDSQWERTYUIOPaa");
         }
 
         [Fact]
@@ -154,17 +160,19 @@ namespace cc150CSharp
             MethodHandler method=new MethodHandler(methodASCII);
             _st=new SpeedTester(method);
             _st.RunTest();
+            _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
 
         }
 
 
         [Fact]
-        public void TestPerf()
-        {
+        public void TestPerfBf()
+        { // Bf method requires O(n^2) in avarage case.
             MethodHandler method=new MethodHandler(methodBf);
             _st=new SpeedTester(method);
             _st.RunTest();
-            
+            _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
+
 
         }
     }

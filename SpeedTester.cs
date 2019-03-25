@@ -35,7 +35,7 @@ namespace cc150CSharp
 
         public void RunTest()
         {
-            RunTest(10000); //default 10,000 trials
+            RunTest(100000); //default 10,000 trials
         }
 
         public void RunTest(int trials)
