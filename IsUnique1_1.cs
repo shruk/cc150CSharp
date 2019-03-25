@@ -28,6 +28,9 @@ namespace cc150CSharp
         //d:Small test cases.
         //e:Special cases. Test against null or single element values, extreme cases, etc.
         //f:When finding bugs, analyze the bug and make correction in the best place.
+        
+        // Time: O(n^2)
+        // Space: O(1)
         public bool IsUniqueBf(string s)
         {
 
@@ -45,6 +48,8 @@ namespace cc150CSharp
             return true;
         }
 
+        // Time: O(n)
+        // Space: O(n)
         public bool IsUnique(string s)
         {
             if (s.Length == 0) return true;
@@ -128,16 +133,54 @@ namespace cc150CSharp
             return true;
         }
 
+
+		// Time: O(nlogn)
+        // Space: merge sort space requirement
+        public bool IsUniqueBySort(string s)
+        {// Divide and Conquer, Sort array first, then check each.
+            // MergeSort(s);// O(nlogn) time complexity.
+            for (int i=0;i<s.Length-1;i++)
+        {
+            if(s[i]==s[i+1])
+            {
+                return true;
+            }
+        }
+        return false;
+        }
+
+        // Time: O(n)
+        // Space: O(128)
+        public bool IsUniqueASCII(string s)
+        {// Assume char set is ASCII set for 128 elements
+            bool [] checker=new bool[128];
+            for(int i=0;i<=s.Length;i++)
+            {// O(n) time complexity
+                int val=(int)s[i];
+                if (checker[val])
+                {
+                    return false;
+                }
+                else 
+                {
+                    checker[val]=true;
+                }
+            }
+            return true;
+        }
     }
 
 
     public class TestIsUnique
     {
         private UniqueString _class;
+        private SpeedTester _st;
         public TestIsUnique()
         {
             _class = new UniqueString();
         }
+
+        
 
         [Fact]
         public void Test()
@@ -152,6 +195,37 @@ namespace cc150CSharp
             Assert.False(_class.IsUniqueTry("abcdefghijkk"));
             Assert.True(_class.IsUniqueTry("abcdefghijk"));
             Assert.False(_class.IsUniqueTry("abicdhijk"));
+        }
+
+        public void methodASCII()
+        {
+            bool b=_class.IsUniqueASCII("aertuhghza");
+        }
+
+        public void methodBf()
+        {
+            bool b=_class.IsUniqueBf("aertuhghza");
+        }
+
+        [Fact]
+        public void TestPerfASCII()
+        {
+            
+            MethodHandler method=new MethodHandler(methodASCII);
+            _st=new SpeedTester(method);
+            _st.RunTest();
+
+        }
+
+
+        [Fact]
+        public void TestPerf()
+        {
+            MethodHandler method=new MethodHandler(methodBf);
+            _st=new SpeedTester(method);
+            _st.RunTest();
+            
+
         }
     }
 }
