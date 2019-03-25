@@ -2,16 +2,19 @@
 using System;
 using System.Diagnostics;
 
-namespace Util
+namespace cc150CSharp
 {
+
+    public delegate void MethodHandler();
+
     // SpeedTester is constructed by a delegate method that user pass in a method
     // And then the speedTester has a RunTest method to run a default number of times for this method,
     // And then the totalRunningTime and averageRunningTime can be recorded.
     public class SpeedTester
     {
-        public delegate void MethodHandler();
         private int totalRunningTime;
         private double averageRunningTime;
+        public MethodHandler method;
 
         public int TotalRunningTime
         {
@@ -23,12 +26,12 @@ namespace Util
             get { return averageRunningTime; }
         }
 
-        private MethodHandler method;
-
+        
         public SpeedTester(MethodHandler methodToTest)
         {
             this.method = methodToTest;
         }
+
 
         public void RunTest()
         {

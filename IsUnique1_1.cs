@@ -119,10 +119,13 @@ namespace cc150CSharp
     public class TestIsUnique
     {
         private UniqueString _class;
+        private SpeedTester _st;
         public TestIsUnique()
         {
             _class = new UniqueString();
         }
+
+        
 
         [Fact]
         public void Test()
@@ -132,6 +135,37 @@ namespace cc150CSharp
             string s1 = "";
             Assert.True(_class.IsUnique(s1));
             Assert.False(_class.IsUnique("  "));
+        }
+
+        public void methodASCII()
+        {
+            bool b=_class.IsUniqueASCII("aertuhghza");
+        }
+
+        public void methodBf()
+        {
+            bool b=_class.IsUniqueBf("aertuhghza");
+        }
+
+        [Fact]
+        public void TestPerfASCII()
+        {
+            
+            MethodHandler method=new MethodHandler(methodASCII);
+            _st=new SpeedTester(method);
+            _st.RunTest();
+
+        }
+
+
+        [Fact]
+        public void TestPerf()
+        {
+            MethodHandler method=new MethodHandler(methodBf);
+            _st=new SpeedTester(method);
+            _st.RunTest();
+            
+
         }
     }
 }
