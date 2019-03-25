@@ -63,10 +63,11 @@ namespace cc150CSharp
         {
             if (s.Length == 0) return true;
 			var li=new List<char>();
+            // Missing Load chars into list.
 			foreach (char c in s)
 			{
 				foreach (char c1 in li)
-				{// O(n^2) time compexlity
+				{// O(n^2) time compexlity.
 					if (c1==c)return false;
 				}
 			}
@@ -76,17 +77,57 @@ namespace cc150CSharp
         // Try to solve it with O(NlogN)?
 		// Maybe recursion? 
         public bool IsUniqueTry(string s)
-        {// Divide and Conquer, Sort array first, then check each.
-            // MergeSort(s);// O(nlogn) time complexity.
-            for (int i=0;i<s.Length-1;i++)
-            {
-                if(s[i]==s[i+1])
-                {
-                    return true;
-                }
-            }
-            return false;
+        {// Divide and Conquer, //divide string into substring until 1 char, then merge , check duplicate during merge...
+            char [] cs=s.ToCharArray();
+            return CheckUnique(cs,0,cs.Length-1);
         }
+
+        private bool CheckUnique(char [] s, int startIdx, int endIdx)
+        {
+            if (startIdx>=endIdx){
+                return true;// Only 1 element left , so IsUnique is true;
+            }
+            int midIdx=(startIdx+endIdx)/2;   
+            if (!CheckUnique(s,startIdx,midIdx)) return false;
+            if (!CheckUnique(s,midIdx+1,endIdx))return false;
+            return Merge(s,startIdx,midIdx,endIdx);
+        }
+
+        public bool Merge(char [] s,int startIdx,int midIdx,int endIdx)
+        {   
+            int leftRunner=startIdx;
+            int rightRunner=midIdx+1;
+            int tempRunner=startIdx;
+            char [] temp=new char[s.Length];
+            while(leftRunner<=midIdx && rightRunner<=endIdx)
+            {
+                if (s[leftRunner]<s[rightRunner])
+                {
+                    temp[tempRunner++]=s[leftRunner++];
+                }else if (s[leftRunner]>s[rightRunner])
+                {
+                    temp[tempRunner++]=s[rightRunner++];
+                }
+                else if (s[leftRunner]==s[rightRunner]) return false;
+            }
+            // Copy rest of left part or right part.
+            while (leftRunner<=midIdx)
+            {
+                temp[tempRunner++]=s[leftRunner++];
+            }
+            while (rightRunner<=endIdx)
+            {
+                temp[tempRunner++]=s[rightRunner++];
+            }
+            for (int i1=startIdx;i1<=endIdx;i1++)
+            {
+                s[i1]=temp[i1];
+            }
+
+
+            return true;
+        }
+
     }
 
 
@@ -105,7 +146,12 @@ namespace cc150CSharp
             Assert.False(_class.IsUnique(s));
             string s1 = "";
             Assert.True(_class.IsUnique(s1));
+            Assert.False(_class.IsUniqueTry(s));
             Assert.False(_class.IsUnique("  "));
+            Assert.False(_class.IsUniqueTry("  "));
+            Assert.False(_class.IsUniqueTry("abcdefghijkk"));
+            Assert.True(_class.IsUniqueTry("abcdefghijk"));
+            Assert.False(_class.IsUniqueTry("abicdhijk"));
         }
     }
 }
