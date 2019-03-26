@@ -32,11 +32,12 @@ namespace cc150CSharp{
       //e:Special cases. Test against null or single element values, extreme cases, etc.
       //f:When finding bugs, analyze the bug and make correction in the best place.
 		public bool IsPalinPemu(string a)
-		{
-			
+		{	
+			//Check for case-insensitive cases
+			char []b=a.ToLower().ToCharArray();
 			//build a hashtable to process
 			Dictionary<char,int> dict=new Dictionary<char,int>();
-			foreach( char c in a)
+			foreach( char c in b)
 			{//O(n)
 				if (c!=' '){
 					if (dict.TryGetValue(c,out int value)){
@@ -67,6 +68,7 @@ namespace cc150CSharp{
      public void testPalinPemu(){
      	string a="";
      	Assert.Equal(true,_this.IsPalinPemu(a));
+			 Assert.Equal(true,_this.IsPalinPemu("Tact Coa"));
      }	
     }
 }
