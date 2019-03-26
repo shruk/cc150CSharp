@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -56,6 +57,93 @@ namespace cc150CSharp{
 			if (oddCount>1)return false;
 			return true;
 		}
+
+		public bool IsPalinPemuBit(string a)
+		{
+			int bitVector = createBitVector(a);
+			return bitVector==0||checkExactlyOneBitSet(bitVector);
+			
+		}
+
+        private bool checkExactlyOneBitSet(int bitVector)
+        {// 00010000 -1 = 00001111  ==>> 00010000 & 00001111 =0
+           return (bitVector & (bitVector -1))== 0;
+        }
+
+        private int createBitVector(string a)
+        {
+            int bitVector=0;
+						foreach (char c in a.ToLower().ToCharArray())
+						{
+							int x=getCharNumber(c);
+							bitVector=toggle(bitVector,x);
+						}
+						return bitVector;
+        }
+
+        private int toggle(int bitVector, int x)
+        {
+            if (x <0)return bitVector;
+						int mask =1<<x;
+						if ((bitVector & mask)==0) // there is no duplicate char, then zero, if duplicate, then go to else
+						{// No duplicate char, flip from 0 to 1.
+							bitVector|=mask;// Flip to 1 add to existing bitVector.
+						}
+						else
+						{// Duplicate char in bitVector and mask, ~mask&bitVector will flip the dup only
+						 // flip from 1 to 0 in event of duplicate.
+							bitVector&= ~mask;
+						}
+						return bitVector;
+        }
+
+        // Need to add a logic to ignore all non-letter characters
+        // Time complexity is the same as original solution but better case handling.
+        public bool IsPalinPemuPro(string a)
+		{
+			// Build hash table to store string character's frequency.
+			int [] table =buildCharFrequencyTable(a);
+			return checkMaxOneOdd(table);
+		}
+
+    private bool checkMaxOneOdd(int[] table)
+        { bool oddFound=false;
+						foreach (int i in table)
+						{
+								if (i%2!=0)
+								{
+									if (oddFound)
+									{
+										return false;
+									}
+									oddFound=true;
+								}
+						}
+						return true;
+        }
+
+    private int getCharNumber(Char c)
+			{
+				if (c>='a' && c<='z' )
+				{// Return only the value differences
+					return c-'a';
+				}
+				else
+				{
+					return -1;
+				}
+			}
+		private int[] buildCharFrequencyTable(string a)
+			{
+				// Create array to hold all lower case letters
+					int [] table=new int['z'-'a'+1]; 
+					foreach (char c in a.ToLower().ToCharArray())
+					{
+						 if (getCharNumber(c)!=-1)
+							table[getCharNumber(c)]++;
+					}
+					return table;
+			}
     }
     
     public class TestPalinPemu{
@@ -69,6 +157,8 @@ namespace cc150CSharp{
      	string a="";
      	Assert.Equal(true,_this.IsPalinPemu(a));
 			 Assert.Equal(true,_this.IsPalinPemu("Tact Coa"));
+			 Assert.Equal(true,_this.IsPalinPemuBit("Tact Coa"));
+			 Assert.Equal(false,_this.IsPalinPemu("Tact 1Coa"));
      }	
     }
 }
