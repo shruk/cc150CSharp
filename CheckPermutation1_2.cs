@@ -67,6 +67,7 @@ namespace cc150CSharp{
 		}
 
 		// Sort both string then compare the euqalness, sorting take n(logn) + n comparision
+		// This solution is best as the code is clean and easy!
 		public bool IsPermutationSort(string a, string t)
 		{
 			char [] arrayA=a.ToCharArray();
@@ -111,7 +112,7 @@ namespace cc150CSharp{
 		public void methodDict()
 		{
 			bool b=_class.IsPermutation("aabbccdd","ddccbbaa");
-		}
+		}//test
 		public void methodSort()
 		{
 			bool b=_class.IsPermutationSort("aabbccdd","ddccbbaa");
@@ -131,10 +132,19 @@ namespace cc150CSharp{
 		}
 
 		
+		
 		[Fact]
 		public void testPerfSort()
 		{
 			MethodHandler method=new MethodHandler(methodSort);
+			_st=new SpeedTester(method);
+			_st.RunTest();
+			_output.WriteLine($" total running minisec: {_st.TotalRunningTime}");
+		}
+		[Fact]
+		public void testPerfArray()
+		{
+			MethodHandler method=new MethodHandler(methodArray);
 			_st=new SpeedTester(method);
 			_st.RunTest();
 			_output.WriteLine($" total running minisec: {_st.TotalRunningTime}");
