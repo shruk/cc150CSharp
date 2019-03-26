@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace cc150CSharp{
 	public class CheckPermutation1_2{
@@ -12,8 +14,10 @@ namespace cc150CSharp{
 		//5. Walk through: load string1 into HS, O(a), go through string2 O(b), check if char in b exists in HS,if exists, remove that char from HS. else, return false; at last, check HS.count ==0
 		//6.Write beautiful code: using standard format
 		//7.Test
+		
+		// Time complexity: O(a+b+a)=>O(a+b)
 		public bool IsPermutation(string a,string b)
-		{
+		{// For each char in string a, load into dictionary as key=> char, value=> count
 			if ((a == null)||(b==null)) return false;
 			if (a.Length!=b.Length)return false;
 			Dictionary<char,int> dictA=new Dictionary<char,int>();
@@ -25,6 +29,7 @@ namespace cc150CSharp{
 				dictA.Add(a[i],1);	
 				}
 			}
+			// Scan each char in string b, minus the count from dictionary,
 			for(int j=0;j<b.Length;j++)
 			{//O(b) operations
 				if (dictA.TryGetValue(b[j],out outCount)){
@@ -32,20 +37,58 @@ namespace cc150CSharp{
 				}
 				else {return false;}
 			}
-			//check count value
+			// Check count value should be zero
 			foreach(int c in dictA.Values)
 			{//O(a)
 				if (c!=0)return false;
 			}
 			return true;
 		}
+
+		public bool IsPermutationArray(string a,string t)
+		{
+			if (a.Length!=t.Length)return false;
+			// Assume we use ASCII string, hold a count on number of times each char appears
+			int [] count= new int [128];
+			foreach( char c in a)
+			{
+				count[c]++; // Increase number at index of char value.
+			}
+			// Perform deduction 
+			foreach (char c in t)
+			{
+				count[c]--;
+				if ((count[c])<0) //only if b has char doesn't in a or has more same char than in a.
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		// Sort both string then compare the euqalness, sorting take n(logn) + n comparision
+		public bool IsPermutationSort(string a, string t)
+		{
+			char [] arrayA=a.ToCharArray();
+			char [] arrayT=t.ToCharArray();
+			Array.Sort(arrayA);
+			Array.Sort(arrayT);
+			// String.Equals and char [] Equals are differnt. String is comparing value, while char [] is obj compare.
+			return new String(arrayA).Equals(new String(arrayT));
+			// arrayA.Equals(arrayT) Implements object comparision.
+		}
 	}
 	
 	public class TestCheckPermutation{
 		private CheckPermutation1_2 _class;
-		public TestCheckPermutation(){
+		private SpeedTester _st;
+		private readonly ITestOutputHelper _output;
+		public TestCheckPermutation(ITestOutputHelper output){
 		_class=new CheckPermutation1_2();
+		_output=output;
 		}
+
+
 		[Fact]
 		public void testCheckPermutation(){
 			string a="";
@@ -57,10 +100,44 @@ namespace cc150CSharp{
 			a="aab";
 			b="baa";
 			Assert.Equal(true,_class.IsPermutation(a,b));
+			Assert.Equal(true,_class.IsPermutationSort(a,b));
+			Assert.Equal(true,_class.IsPermutationArray(a,b));
 			a="aabceer";
 			b="baaerec";
 			Assert.Equal(true,_class.IsPermutation(a,b));
 		
+		}
+
+		public void methodDict()
+		{
+			bool b=_class.IsPermutation("aabbccdd","ddccbbaa");
+		}
+		public void methodSort()
+		{
+			bool b=_class.IsPermutationSort("aabbccdd","ddccbbaa");
+		}
+
+		public void methodArray()
+		{
+			bool b=_class.IsPermutationArray("aabbccdd","ddccbbaa");
+		}
+		[Fact]
+		public void testPerfDict()
+		{
+			MethodHandler method=new MethodHandler(methodDict);
+			_st=new SpeedTester(method);
+			_st.RunTest();
+			_output.WriteLine($" total running minisec: {_st.TotalRunningTime}");
+		}
+
+		
+		[Fact]
+		public void testPerfSort()
+		{
+			MethodHandler method=new MethodHandler(methodSort);
+			_st=new SpeedTester(method);
+			_st.RunTest();
+			_output.WriteLine($" total running minisec: {_st.TotalRunningTime}");
 		}
 	}
 }

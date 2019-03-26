@@ -236,6 +236,12 @@ namespace cc150CSharp
            
         }
 
+        public void methodTry()
+        {
+            bool b=_class.IsUniqueTry("bcdefghijklmnopqrstuvwxyz1234567890-=][';/.,ZXCVBNMKLJHGFDSQWERTYUIOPaa");
+           
+        }
+
         [Fact]
         public void TestPerfASCII()
         {
@@ -262,6 +268,15 @@ namespace cc150CSharp
         public void TestPerfBit()
         { // Bit method should be very fast due to bit operation
             MethodHandler method=new MethodHandler(methodBit);
+            _st=new SpeedTester(method);
+            _st.RunTest();
+            _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
+        }
+        
+        [Fact]
+        public void TestPerfTry()
+        { // Bit method should be very fast due to bit operation
+            MethodHandler method=new MethodHandler(methodTry);
             _st=new SpeedTester(method);
             _st.RunTest();
             _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
