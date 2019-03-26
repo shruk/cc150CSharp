@@ -20,9 +20,12 @@ namespace cc150CSharp{
 //6.Write beautiful code
 //7.Test code: wierd code checking; sample checking: if string has 2 spaces, 
 //we need to test if substring is needed, assume string input is not null.
+		
+		// Time Complexity O(n)
+		// Space: 2n as we are using extra Dictionary.
 		public char[] URLify_bf(char[] a,int len)
 		{//use hash table to store what char is for each index after replacement,
-		// then loop through array char to place the value
+		 // then loop through array char to place the value
 			if (a==null)return null;
 			int index=0;
 			Dictionary<int,char> dict=new Dictionary<int,char>();
@@ -44,6 +47,38 @@ namespace cc150CSharp{
 			{
 				
 				a[i]=dict[i];
+			}
+			return a;
+		}
+
+		// Edit string from back to front, this way we don't need to worry about overwriting.
+		// Save some space by not using additional DS
+		public char[] URLify_Pro(char[] a,int len)
+		{
+			if (a==null)return null;
+			int spCount=0;
+			// Count number of space we have
+			foreach(char c in a)
+			{
+				if (c==' ')
+				{
+					spCount++;
+				}
+			}
+			// Calculate the new Length of new string
+			int newLen=len+(spCount*2);
+			for (int i=newLen-1,j=len;i>=0;)
+			{
+				if (a[j]==' '){
+					a[i--]='0';
+					a[i--]='2';
+					a[i--]='%';
+					j--;
+				}
+				else
+				{// Any other char.
+					a[i--]=a[j--];
+				}
 			}
 			return a;
 		}
