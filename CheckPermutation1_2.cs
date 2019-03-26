@@ -12,7 +12,7 @@ namespace cc150CSharp{
 		//3.BF naive way: for each char in string1, go to string2 check if exists, mark found on that position. need to create another array to store found information. O(a*b) time complexity and O(a+b) space complexity
 		//4. BUD optimization: use Hash table, the best conceivable runtime should be O(a+b),precompute length maybe helpful for runtime. string1.len==string2.len else return false;
 		//5. Walk through: load string1 into HS, O(a), go through string2 O(b), check if char in b exists in HS,if exists, remove that char from HS. else, return false; at last, check HS.count ==0
-		//6.Write beautiful code: using standard format
+		//6.Write beautiful code: using standard format.
 		//7.Test
 		
 		// Time complexity: O(a+b+a)=>O(a+b)
@@ -112,7 +112,7 @@ namespace cc150CSharp{
 		public void methodDict()
 		{
 			bool b=_class.IsPermutation("aabbccdd","ddccbbaa");
-		}//test
+		}//test 
 		public void methodSort()
 		{
 			bool b=_class.IsPermutationSort("aabbccdd","ddccbbaa");
