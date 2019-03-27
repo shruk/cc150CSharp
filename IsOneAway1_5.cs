@@ -42,7 +42,7 @@ namespace cc150CSharp
             // Check if a has one more char than b.
             if (a.Length > b.Length)
             {
-                for (int i = 0, j = 0; i < a.Length;)
+                for (int i = 0, j = 0; i < a.Length&& j<b.Length;)
                 {// Check if a has one more char.
                     if (a[i] != b[j])
                     {// Found the char,move i forward.
@@ -50,15 +50,16 @@ namespace cc150CSharp
                         if (diff > 1) return false;
                     }
                     else
-                    {
+                    {// Equal
                         j++; i++;
                     }
                 }
+
             }
             else if (a.Length < b.Length)
             {
                 // Check if b has one more char.
-                for (int i = 0, j = 0; i < b.Length;)
+                for (int i = 0, j = 0; i < b.Length&&j<a.Length;)
                 {
                     if (b[i] != a[j])
                     {// Found the char,move i forward.
@@ -71,7 +72,7 @@ namespace cc150CSharp
             else
             {
                 // Check if char gets replaced by 1.
-                for (int i = 0, j = 0; i < b.Length;)
+                for (int i = 0, j = 0; i < b.Length&&j<a.Length;)
                 {
                     if (b[i] != a[j])
                     {// Found the char,move i forward.
@@ -101,6 +102,11 @@ namespace cc150CSharp
             Assert.Equal(true, _o.IsOneAway(a, b));
             string b1 = "bake";
             Assert.Equal(false, _o.IsOneAway(a, b1));
+            a = "pales";b="pale";
+            Assert.True(_o.IsOneAway(a,b));
+            a="pale";b="bale";
+            Assert.True(_o.IsOneAway(a,b));
+
         }
 
 
