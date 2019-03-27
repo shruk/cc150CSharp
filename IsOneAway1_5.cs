@@ -85,8 +85,7 @@ namespace cc150CSharp
             return diff <= 1;
         }
 
-    }
-
+    }//
     public class TestIsOneAway
     {
         private OneAway _o;
