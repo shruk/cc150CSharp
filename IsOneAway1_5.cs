@@ -89,6 +89,21 @@ namespace cc150CSharp
                 return diff <= 1;
         }
 
+        private bool oneEditReplace(string a, string b)
+        {
+            bool foundDiff=false;
+            for (int i=0;i<a.Length;i++)
+            {
+                if(a[i]!=b[i])
+                {// First time just mark the flag.
+                    foundDiff=true;
+                    // For the second time, then return false.
+                    if (foundDiff)return false;
+                }
+            }
+            return true;
+        }
+
     }//
     public class TestIsOneAway
     {
