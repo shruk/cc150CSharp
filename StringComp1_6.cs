@@ -34,12 +34,14 @@ namespace cc150CSharp{
 //	e:Special cases. Test against null or single element values, extreme cases, etc.
 //	f:When finding bugs, analyze the bug and make correction in the best place.       
     public string Compress(string a)
-    {
+    {// Construct Dict for position(seqence) and its key/value pair (letter/count)
         Dictionary<int,KeyValue> dict=new Dictionary<int,KeyValue>();
         char last=default(char);
         int lastInd=0;
         for (int i=0;i<a.Length;i++)//O(n)
-        {   if (a[i]!=last){
+        {   // Compare current char with last processed char
+            if (a[i]!=last)
+            {
                 //add new
             dict.Add(i,new KeyValue(a[i],1));
             last=a[i];
@@ -52,7 +54,7 @@ namespace cc150CSharp{
         }
         StringBuilder sb =new StringBuilder();
         foreach(KeyValue k in dict.Values)
-        {
+        { // O(n) to loop through dict values
             sb.Append(k.ToString());
         }
 

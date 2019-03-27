@@ -39,39 +39,44 @@ namespace cc150CSharp
             int ldiff = Math.Abs(a.Length - b.Length);
             if (ldiff > 1) return false;
             int diff = 0;
+            // due to similarity of the below functions, we can extract the logic out by re-factoring
             // Check if a has one more char than b.
             if (a.Length > b.Length)
-            {
-                for (int i = 0, j = 0; i < a.Length&& j<b.Length;)
-                {// Check if a has one more char.
-                    if (a[i] != b[j])
-                    {// Found the char,move i forward.
-                        i++; diff++;
-                        if (diff > 1) return false;
-                    }
-                    else
-                    {// Equal
-                        j++; i++;
-                    }
-                }
-
+            { 
+                return CalcaulteDiff(a,b,diff);
             }
             else if (a.Length < b.Length)
-            {
-                // Check if b has one more char.
-                for (int i = 0, j = 0; i < b.Length&&j<a.Length;)
-                {
-                    if (b[i] != a[j])
-                    {// Found the char,move i forward.
-                        i++; diff++;
-                        if (diff > 1) return false;
-                    }
-                    else { j++; i++; }
-                }
+            { 
+                return CalcaulteDiff(b,a,diff);
             }
             else
-            {
-                // Check if char gets replaced by 1.
+            { // Check if char gets replaced by 1.
+                return CalculateDiffWhenEqual(a,b,diff);
+            }
+        }
+
+        //Define the function as if the condition is set that a is going to be greater than b
+        private bool CalcaulteDiff(string a, string b,int diff)
+        {// Assume a.Length > b.Length
+            int i,j;
+            for (i=0, j=0; i < a.Length&& j<b.Length;)
+            {// Check if a has one more char.
+                if (a[i] != b[j])
+                {// Found the char,move i forward.
+                    i++; diff++;
+                }
+                else
+                {// Equal
+                    j++; i++;
+                }
+            }
+            if (i==j){diff++; }
+            return diff <= 1;
+        }
+
+        private bool CalculateDiffWhenEqual(string a,string b, int diff)
+        {
+             // Check if char gets replaced by 1.
                 for (int i = 0, j = 0; i < b.Length&&j<a.Length;)
                 {
                     if (b[i] != a[j])
@@ -81,8 +86,7 @@ namespace cc150CSharp
                     }
                     else { j++; i++; }
                 }
-            }
-            return diff <= 1;
+                return diff <= 1;
         }
 
     }//
