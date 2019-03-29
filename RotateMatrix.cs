@@ -1,3 +1,4 @@
+using System.Text;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -43,9 +44,22 @@ namespace cc150CSharp
         [Fact]
         public void testMatrix()
         {
-            int [,] arr=new int[2,2];
-            
+            int [,] arr=new int[2,2]{ {1,2},{ 3,4}};
+            PrintArray(arr);
             _o.RotateMatrixBf(arr);
+        }
+
+        private void PrintArray(int [,] arr)
+        {
+             
+            for (int i=0;i<arr.GetLength(0);i++)
+            {StringBuilder sb=new StringBuilder();
+                for (int j=0;j<arr.GetLength(1);j++)
+                {
+                    sb.Append(arr[i,j]);
+                }
+                 _output.WriteLine(sb.ToString());
+            }
         }
     }
 }
