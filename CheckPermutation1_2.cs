@@ -94,18 +94,18 @@ namespace cc150CSharp{
 		public void testCheckPermutation(){
 			string a="";
 			string b="";
-			Assert.Equal(true,_class.IsPermutation(a,b));
+			Assert.True(_class.IsPermutation(a,b));
 			a=null;
 			b=null;
-			Assert.Equal(false,_class.IsPermutation(a,b));
+			Assert.False(_class.IsPermutation(a,b));
 			a="aab";
 			b="baa";
-			Assert.Equal(true,_class.IsPermutation(a,b));
-			Assert.Equal(true,_class.IsPermutationSort(a,b));
-			Assert.Equal(true,_class.IsPermutationArray(a,b));
+			Assert.True(_class.IsPermutation(a,b));
+			Assert.True(_class.IsPermutationSort(a,b));
+			Assert.True(_class.IsPermutationArray(a,b));
 			a="aabceer";
 			b="baaerec";
-			Assert.Equal(true,_class.IsPermutation(a,b));
+			Assert.True(_class.IsPermutation(a,b));
 		
 		}
 

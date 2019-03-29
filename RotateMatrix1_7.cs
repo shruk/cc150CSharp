@@ -68,7 +68,7 @@ namespace cc150CSharp{
         string a="test";
         string b="estt";
         //Given
-        Assert.Equal(true,_o.IsRotation(a,b));
+        Assert.True(_o.IsRotation(a,b));
         //When
         
         //Then

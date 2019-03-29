@@ -155,10 +155,10 @@ namespace cc150CSharp{
      [Fact]
      public void testPalinPemu(){
      	string a="";
-     	Assert.Equal(true,_this.IsPalinPemu(a));
-			 Assert.Equal(true,_this.IsPalinPemu("Tact Coa"));
-			 Assert.Equal(true,_this.IsPalinPemuBit("Tact Coa"));
-			 Assert.Equal(false,_this.IsPalinPemu("Tact 1Coa"));
+     	Assert.True(_this.IsPalinPemu(a));
+			 Assert.True(_this.IsPalinPemu("Tact Coa"));
+			 Assert.True(_this.IsPalinPemuBit("Tact Coa"));
+			 Assert.False(_this.IsPalinPemu("Tact 1Coa"));
      }	
     }
 }

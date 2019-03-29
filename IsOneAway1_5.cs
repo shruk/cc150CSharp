@@ -117,9 +117,9 @@ namespace cc150CSharp
         {
             string a = "pale";
             string b = "ple";
-            Assert.Equal(true, _o.IsOneAway(a, b));
+            Assert.True(_o.IsOneAway(a, b));
             string b1 = "bake";
-            Assert.Equal(false, _o.IsOneAway(a, b1));
+            Assert.False(_o.IsOneAway(a, b1));
             a = "pales";b="pale";
             Assert.True(_o.IsOneAway(a,b));
             a="pale";b="bale";
