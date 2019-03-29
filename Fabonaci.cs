@@ -17,7 +17,7 @@ namespace cc150CSharp
             }
             else
             {
-                return result+=CalculateFab(n-1);
+                return result+=CalculateFab(n-1)+CalculateFab(n-2);
             }
         }
 
@@ -38,6 +38,8 @@ namespace cc150CSharp
             Assert.Equal(1,_o.CalculateFab(2));
             Assert.Equal(2,_o.CalculateFab(3));
             Assert.Equal(3,_o.CalculateFab(4));
+            Assert.Equal(5,_o.CalculateFab(5));
+            Assert.Equal(8,_o.CalculateFab(6));
         }
 
     }
