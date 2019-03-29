@@ -41,13 +41,12 @@ namespace cc150CSharp{
         for (int i=0;i<a.Length;i++)//O(n)
         {   // Compare current char with last processed char
             if (a[i]!=last)
-            {
-                //add new
+            {//add new
             dict.Add(i,new KeyValue(a[i],1));
             last=a[i];
             lastInd=i;
-
-            }else
+            }
+            else
             {
                 dict[lastInd].Value++;
             }
@@ -57,10 +56,29 @@ namespace cc150CSharp{
         { // O(n) to loop through dict values
             sb.Append(k.ToString());
         }
-
         string result=sb.ToString();
         if(result.Length<a.Length)return result;
         return a;
+    }
+    
+    //Build without extra ds to help.
+    public string CompressPro(string str)
+    {
+        StringBuilder result=new StringBuilder();
+        // Var to hold number of times for Char
+        int countConsecutive=0; 
+        for (int i=0;i<str.Length;i++)
+        {
+            countConsecutive++;
+            if (i+1>=str.Length||str[i]!=str[i+1])
+            {// A new char
+             // Reset count.
+                result.Append(str[i]+countConsecutive);
+                countConsecutive=0; 
+            }
+        }
+        return result.Length>str.Length?str:result.ToString();
+
     }
     public class KeyValue{
         readonly char _key;
