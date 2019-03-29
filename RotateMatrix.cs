@@ -6,7 +6,7 @@ namespace cc150CSharp
 {
     public class RotateMatrix<T>
     {
-        public void RotateMatrixBf(T [,] arr)
+        public T [,] RotateMatrixBf(T [,] arr)
         {
             //Basically re-create another matrix and reassign the matrix by access the given matrix
             // How to get the dimension of the matrix?
@@ -20,24 +20,20 @@ namespace cc150CSharp
             for (int i=0;i<len;i++)
             {
                 for (int j=0;j<len;j++)
-                {
-                    arrNew[i,j]=arr[len-j,i];
+                {// O(n^2)
+                    arrNew[i,j]=arr[len-j-1,i];
                 }
             }
-            arr=arrNew;
+            return arrNew;
         }
     }
 
 
-    public class TestRotateMatrixOfT{
-        
-        private readonly ITestOutputHelper _output;
+    public class TestRotateMatrixOfT : BaseTest
+    {
         private RotateMatrix<int> _o;
-        private SpeedTester _st;
-
-        public TestRotateMatrixOfT(ITestOutputHelper output)
+        public TestRotateMatrixOfT(ITestOutputHelper output):base(output)
         {
-            _output=output;
             _o=new RotateMatrix<int>();
         }
 
@@ -46,7 +42,7 @@ namespace cc150CSharp
         {
             int [,] arr=new int[2,2]{ {1,2},{ 3,4}};
             PrintArray(arr);
-            _o.RotateMatrixBf(arr);
+            PrintArray(_o.RotateMatrixBf(arr));
         }
 
         private void PrintArray(int [,] arr)
