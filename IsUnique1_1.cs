@@ -242,9 +242,7 @@ namespace cc150CSharp
         [Fact]
         public void TestPerfASCII()
         {
-            
-            MethodHandler method=new MethodHandler(methodASCII);
-            _st=new SpeedTester(method);
+            _st=new SpeedTester(new MethodHandler(methodASCII));
             _st.RunTest();
             _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
 
@@ -254,8 +252,7 @@ namespace cc150CSharp
         [Fact]
         public void TestPerfBf()
         { // Bf method requires O(n^2) in avarage case.
-            MethodHandler method=new MethodHandler(methodBf);
-            _st=new SpeedTester(method);
+            _st=new SpeedTester(new MethodHandler(methodBf));
             _st.RunTest();
             _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
         }
@@ -264,8 +261,7 @@ namespace cc150CSharp
         [Fact]
         public void TestPerfBit()
         { // Bit method should be very fast due to bit operation
-            MethodHandler method=new MethodHandler(methodBit);
-            _st=new SpeedTester(method);
+            _st=new SpeedTester(new MethodHandler(methodBit));
             _st.RunTest();
             _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
         }
@@ -273,8 +269,7 @@ namespace cc150CSharp
         [Fact]
         public void TestPerfTry()
         { // Bit method should be very fast due to bit operation
-            MethodHandler method=new MethodHandler(methodTry);
-            _st=new SpeedTester(method);
+            _st=new SpeedTester(new MethodHandler(methodTry));
             _st.RunTest();
             _output.WriteLine($"total milisec: {_st.TotalRunningTime.ToString()}");
         }

@@ -53,13 +53,11 @@ namespace cc150CSharp
         public void TestCalculateFab()
         {
             Assert.Equal(1,_o.CalculateFab(1));
-            Assert.Equal(1,_o.CalculateFab(2));
             Assert.Equal(2,_o.CalculateFab(3));
             Assert.Equal(3,_o.CalculateFab(4));
             Assert.Equal(5,_o.CalculateFab(5));
             Assert.Equal(8,_o.CalculateFab(6));
             _o.PrintFab(6);
-            _output.WriteLine("I am from base");
         }
 
     }
