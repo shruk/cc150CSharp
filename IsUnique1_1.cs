@@ -189,16 +189,13 @@ namespace cc150CSharp
     }
 
 
-    public class TestIsUnique
+    public class TestIsUnique:BaseTest
 
     {
-        private readonly ITestOutputHelper _output;
         private UniqueString _class;
-        private SpeedTester _st;
-        public TestIsUnique(ITestOutputHelper output)
+        public TestIsUnique(ITestOutputHelper output):base(output)
         {
             _class = new UniqueString();
-            _output=output;
         }
 
         
