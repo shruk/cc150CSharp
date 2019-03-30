@@ -1,6 +1,7 @@
 using System.Text;
 using Xunit;
 using Xunit.Abstractions;
+using cc150CSharp.Util;
 
 namespace cc150CSharp
 {
@@ -32,16 +33,21 @@ namespace cc150CSharp
             result.Append(str[0]);
             return result.ToString().ToCharArray();
         }
+
+        public void ReverseStringPartition(char [] str)
+        {
+            // Try to solve the problem via Paritioning
+            // partition the first and last element as one part
+            // partition the rest elements as one part
+
+        }
     }
 
-    public class TestStringReverse
+    public class TestStringReverse:BaseTest
     {
-        private readonly ITestOutputHelper _output;
         private StringReverse _o;
-        private SpeedTester _st;
-        public TestStringReverse(ITestOutputHelper output)
+        public TestStringReverse(ITestOutputHelper output):base(output)
         {
-            _output=output;
             _o=new StringReverse();
         }
         [Fact]

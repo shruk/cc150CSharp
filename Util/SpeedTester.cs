@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 
-namespace cc150CSharp
+namespace cc150CSharp.Util
 {
 
     public delegate void MethodHandler();
