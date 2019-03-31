@@ -34,12 +34,26 @@ namespace cc150CSharp
             return result.ToString().ToCharArray();
         }
 
-        public void ReverseStringPartition(char [] str)
+        public void ReverseStringPartition(char [] str,int start,int last)
         {
             // Try to solve the problem via Paritioning
             // partition the first and last element as one part
             // partition the rest elements as one part
+            if (start>=last)
+            {// Stop the recursion.
+                return;
+            }
+            
+            Swap(str,start,last);
+            ReverseStringPartition(str,start+1,last-1);
 
+        }
+
+        private void Swap(char [] str, int start,int last)
+        {
+            char temp=str[start];
+            str[start]=str[last];
+            str[last]=temp;
         }
     }
 
@@ -56,6 +70,14 @@ namespace cc150CSharp
             string a="abcdefg";
             string b=new string(_o.ReverseString(a.ToCharArray()));
             _output.WriteLine(b);
+        }
+        [Fact]
+        public void TestReverseStringPartition()
+        {
+            string a="abcdefg";
+            char [] chars=a.ToCharArray();
+            _o.ReverseStringPartition(chars,0,a.Length-1);
+            _output.WriteLine(new string(chars));
         }
 
     }
