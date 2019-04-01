@@ -1,6 +1,6 @@
 using Xunit.Abstractions;
 
-namespace cc150CSharp
+namespace cc150CSharp.Util
 {
     public class BaseTest
     {
