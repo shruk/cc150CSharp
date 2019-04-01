@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Xunit;
 using Xunit.Abstractions;
@@ -6,6 +7,11 @@ namespace cc150CSharp
 {
     public class StringReverse
     {
+        private readonly ITestOutputHelper _output;
+        public StringReverse(ITestOutputHelper output)
+        {
+            _output=output;
+        }
         // Using recursion to solve this problem
         public char [] ReverseString(char [] str)
         {
@@ -32,6 +38,24 @@ namespace cc150CSharp
             result.Append(str[0]);
             return result.ToString().ToCharArray();
         }
+    
+        // Using recursion and return as void
+        // Trying recusion with O(1) extra memory
+        public void ReverseString2(char [] str)
+        {   
+            helper(0,str);
+        }
+
+        private char[] helper(int index, char[] str)
+        {   StringBuilder sb=new StringBuilder();
+            if (str==null||index>=str.Length)
+            {
+                return default(char[]);
+            }
+            sb.Append(helper(index+1,str));
+            return sb.Append(str[index]).ToString().ToCharArray();
+            
+        }
     }
 
     public class TestStringReverse
@@ -42,7 +66,7 @@ namespace cc150CSharp
         public TestStringReverse(ITestOutputHelper output)
         {
             _output=output;
-            _o=new StringReverse();
+            _o=new StringReverse(_output);
         }
         [Fact]
         public void TestReverseString()
@@ -50,6 +74,14 @@ namespace cc150CSharp
             string a="abcdefg";
             string b=new string(_o.ReverseString(a.ToCharArray()));
             _output.WriteLine(b);
+        }
+
+         [Fact]
+        public void TestReverseString2()
+        {
+            string a="abcdefg";
+            _o.ReverseString2(a.ToCharArray());
+            
         }
 
     }
